@@ -1,0 +1,128 @@
+Movie Title,Emotion,Genre
+The Dark Knight Rises,Angry,Action/Crime
+Logan,Angry,Action/Drama
+Terminator 2: Judgment Day,Angry,Sci-Fi/Action
+The Revenant,Angry,Adventure/Drama
+Mad Max: Fury Road,Angry,Action/Adventure
+Gladiator,Angry,Action/Drama
+The Punisher,Angry,Action/Crime
+A Clockwork Orange,Angry,Crime/Drama
+Joker,Angry,Crime/Drama
+The Matrix,Angry,Sci-Fi/Action
+Parasite,Angry,Thriller/Drama
+The Departed,Angry,Crime/Thriller
+Fury,Angry,Action/War
+Watchmen,Angry,Action/Sci-Fi
+American History X,Angry,Drama
+The Godfather,Angry,Crime/Drama
+Heat,Angry,Action/Crime
+The Dark Knight,Angry,Action/Crime
+Scarface,Angry,Crime/Drama
+Oldboy,Angry,Action/Thriller
+The Pursuit of Happyness,Happy,Drama
+Forrest Gump,Happy,Drama
+The Intouchables,Happy,Comedy/Drama
+La La Land,Happy,Comedy/Drama
+Finding Nemo,Happy,Animation/Adventure
+The Grand Budapest Hotel,Happy,Comedy/Drama
+The Secret Life of Walter Mitty,Happy,Adventure/Comedy
+Up,Happy,Animation/Adventure
+The Breakfast Club,Happy,Comedy/Drama
+Mamma Mia!,Happy,Comedy/Musical
+The Social Network,Happy,Drama
+Toy Story 3,Happy,Animation/Adventure
+The Lego Movie,Happy,Animation/Adventure
+Crazy Rich Asians,Happy,Comedy/Romance
+The Intern,Happy,Comedy/Drama
+Pride,Happy,Comedy/Drama
+Julie & Julia,Happy,Comedy/Drama
+Chef,Happy,Comedy/Drama
+The Help,Happy,Drama
+Good Will Hunting,Happy,Drama
+The Pursuit of Happyness,Happy,Drama
+The Lion King,Happy,Animation/Adventure
+Deadpool,Happy,Action/Comedy
+The Martian,Happy,Adventure/Sci-Fi
+Inception,Neutral,Action/Adventure
+Interstellar,Neutral,Adventure/Sci-Fi
+The Matrix,Neutral,Sci-Fi/Action
+Blade Runner,Neutral,Sci-Fi/Thriller
+Her,Neutral,Drama/Romance
+Ex Machina,Neutral,Sci-Fi/Thriller
+2001: A Space Odyssey,Neutral,Sci-Fi/Drama
+Arrival,Neutral,Sci-Fi/Drama
+Eternal Sunshine of the Spotless Mind,Neutral,Drama/Romance
+The Prestige,Neutral,Drama/Mystery
+Shutter Island,Neutral,Thriller/Mystery
+The Imitation Game,Neutral,Biography/Drama
+Gone Girl,Neutral,Thriller/Mystery
+The Curious Case of Benjamin Button,Neutral,Drama/Fantasy
+Birdman,Neutral,Drama
+Requiem for a Dream,Sad,Drama
+The Fault in Our Stars,Sad,Romance/Drama
+Schindler's List,Sad,History/Drama
+Beaches,Sad,Drama/Romance
+My Sister's Keeper,Sad,Drama
+Titanic,Sad,Drama/Romance
+Bridge to Terabithia,Sad,Adventure/Drama
+The Green Mile,Sad,Drama/Fantasy
+A Walk to Remember,Sad,Drama/Romance
+Marley & Me,Sad,Comedy/Drama
+Grave of the Fireflies,Sad,Animation/War
+The Pursuit of Happyness,Sad,Drama
+Manchester by the Sea,Sad,Drama
+The Road,Sad,Drama
+Lion,Sad,Drama
+The Pianist,Sad,Drama/Music
+Million Dollar Baby,Sad,Drama
+The Boy in the Striped Pajamas,Sad,Drama/War
+Moonlight,Sad,Drama
+Boys Don’t Cry,Sad,Drama
+The Shack,Sad,Drama
+Anomalisa,Sad,Animation/Drama
+Inside Out,Sad,Animation/Adventure
+The Perks of Being a Wallflower,Sad,Drama/Romance
+The Notebook,Sad,Romance/Drama
+Up in the Air,Sad,Drama
+The Fault in Our Stars,Sad,Romance/Drama
+Forest Gump,Sad,Drama
+The Conjuring,Fear,Horror/Thriller
+The Ring,Fear,Horror/Mystery
+Psycho,Fear,Thriller/Horror
+Get Out,Fear,Horror/Thriller
+Hereditary,Fear,Horror/Drama
+A Quiet Place,Fear,Horror/Thriller
+It,Fear,Horror
+The Witch,Fear,Horror/Drama
+The Blair Witch Project,Fear,Horror/Mystery
+Jaws,Fear,Thriller/Horror
+The Cabin in the Woods,Fear,Horror/Sci-Fi
+Shutter,Fear,Horror/Thriller
+Insidious,Fear,Horror
+The Others,Fear,Horror/Mystery
+Sinister,Fear,Horror/Thriller
+The Haunting,Fear,Horror
+Paranormal Activity,Fear,Horror
+The Babadook,Fear,Horror/Drama
+Mama,Fear,Horror/Thriller
+It Follows,Fear,Horror/Thriller
+Scream,Fear,Horror/Mystery
+Don't Breathe,Fear,Horror/Thriller
+Jumanji,Surprise,Adventure/Comedy
+Shrek,Surprise,Animation/Adventure
+The Truman Show,Surprise,Drama/Comedy
+The Others,Surprise,Thriller/Horror
+The Village,Surprise,Drama/Mystery
+The Prestige,Surprise,Drama/Mystery
+Primal Fear,Surprise,Thriller/Drama
+The Game,Surprise,Thriller/Drama
+The Sixth Sense,Surprise,Drama/Mystery
+The Departed,Surprise,Crime/Thriller
+The Girl with the Dragon Tattoo,Surprise,Crime/Thriller
+Memento,Surprise,Drama/Mystery
+The Machinist,Surprise,Drama/Thriller
+The Illusionist,Surprise,Drama/Mystery
+Shutter Island,Surprise,Thriller/Mystery
+Atonement,Surprise,Drama/Romance
+Se7en,Surprise,Crime/Thriller
+Prisoners,Surprise,Crime/Thriller
