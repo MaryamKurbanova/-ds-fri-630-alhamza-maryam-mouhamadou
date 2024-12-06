@@ -1,59 +1,106 @@
+import cv2
+from tensorflow.keras.preprocessing.image import img_to_array
 import numpy as np
-from keras.models import load_model
-from keras.preprocessing.image import load_img, img_to_array
-import csv
-import random
+from tensorflow.keras.models import load_model
 
-# Load the trained model
-model = load_model('emotion_recognition_model.h5')
+def detect_face(img):
+    coord = haar.detectMultiScale(img)
+    
+    return coord
 
-# Map numeric predictions to emotion labels
-emotion_labels = ['angry', 'happy', 'sad', 'surprised', 'neutral', 'fear']
+import cv2
+import numpy as np
+from tensorflow.keras.models import load_model
+from keras.preprocessing.image import img_to_array
+import pandas as pd
 
-def load_movies(file_path):
-    """Loads movies from the CSV file and organizes them by emotion."""
-    movies_by_emotion = {}
-    with open(file_path, 'r') as file:
-        reader = csv.DictReader(file)
-        for row in reader:
-            emotion = row['Emotion'].strip().lower()
-            if emotion not in movies_by_emotion:
-                movies_by_emotion[emotion] = []
-            movies_by_emotion[emotion].append((row['Movie Title'], row['Genre']))
-    return movies_by_emotion
+# Function to reassemble the model parts
+def reassemble_model(parts, output_file):
+    with open(output_file, 'wb') as f_out:
+        for part in parts:
+            with open(part, 'rb') as f_in:
+                f_out.write(f_in.read())
+    print(f"Model reassembled to {output_file}")
 
-def recommend_movie(emotion, movies_by_emotion):
-    """Recommends a random movie based on the emotion."""
-    if emotion in movies_by_emotion:
-        movie, genre = random.choice(movies_by_emotion[emotion])
-        return f"We recommend you watch '{movie}' ({genre})."
+# List of the parts
+parts = ['emotion_recognition_model_part_aa', 'emotion_recognition_model_part_ab', 'emotion_recognition_model_part_ac']
+
+# Reassemble the model
+reassemble_model(parts, 'emotion_recognition_model_reassembled.h5')
+
+# Load the reassembled model
+model_tuned = load_model("emotion_recognition_model_reassembled.h5")
+# Load the model and face detector
+haar = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+model_tuned = load_model("emotion_recognition_model.h5")
+
+# Load movie data
+try:
+    movie_data = pd.read_csv('movies.csv')
+    print("Movie data loaded successfully.")
+except Exception as e:
+    print(f"Error loading movie data: {e}")
+    movie_data = None  # Handle missing movie data gracefully
+
+# Emotion classes
+classes = ['Angry', 'Fear', 'Happy', 'Neutral', 'Sad', 'Surprise']
+
+def get_random_movie(emotion):
+    if movie_data is None:
+        return "Movie data unavailable."
+    filtered_movies = movie_data[movie_data['Emotion'] == emotion]
+    if not filtered_movies.empty:
+        random_movie = filtered_movies.sample(n=1)
+        return f"Recommended Movie: {random_movie['Movie Title'].values[0]} ({random_movie['Genre'].values[0]})"
     else:
-        return "Sorry, we couldn't find any movies for that emotion."
+        return "No recommendations available for this emotion."
 
-def predict_emotion(image_path):
-    """Predict the emotion from the input image."""
-    img = load_img(image_path, target_size=(150, 150), color_mode='grayscale')
-    img_array = img_to_array(img) / 255.0  # Normalize
-    img_array = np.expand_dims(img_array, axis=0)  # Add batch dimension
-    predictions = model.predict(img_array)
-    emotion_index = np.argmax(predictions)
-    return emotion_labels[emotion_index]
+def detect_face(img):
+    coord = haar.detectMultiScale(img)
+    print("Faces detected:", coord)
+    return coord
 
-def main():
-    # Load movies CSV
-    movies_file_path = 'movies.csv'
-    movies_by_emotion = load_movies(movies_file_path)
-    
-    # Input: Path to the image
-    image_path = input("Enter the path to the emotion image: ").strip()
-    
-    # Predict the emotion
-    detected_emotion = predict_emotion(image_path)
-    print(f"Detected Emotion: {detected_emotion}")
-    
-    # Recommend a movie based on the detected emotion
-    recommendation = recommend_movie(detected_emotion, movies_by_emotion)
-    print(recommendation)
+webcam = cv2.VideoCapture(0)
 
-if __name__ == "__main__":
-    main()
+if not webcam.isOpened():
+    print("Error: Could not access the webcam.")
+else:
+    print("Webcam opened successfully.")
+
+while webcam.isOpened():
+    status, frame = webcam.read()
+    if not status:
+        print("Error: Failed to capture frame.")
+        break
+
+    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    coords = detect_face(gray_frame)
+
+    for x, y, w, h in coords:
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 3)
+
+        face_crop = gray_frame[y:y + h, x:x + w]
+        if face_crop.shape[0] < 10 or face_crop.shape[1] < 10:
+            continue
+
+        face_crop = cv2.resize(face_crop, (48, 48))
+        face_crop = face_crop.astype("float") / 255.0
+        face_crop = np.expand_dims(face_crop, axis=-1)
+        face_crop = np.expand_dims(face_crop, axis=0)
+
+        conf = model_tuned.predict(face_crop)[0]
+        idx = np.argmax(conf)
+        label = classes[idx]
+
+        cv2.putText(frame, label, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 255, 255), 2)
+        print(f"Emotion Detected: {label}")
+        print(get_random_movie(label))
+
+    cv2.imshow("Emotion Detection", frame)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+webcam.release()
+cv2.destroyAllWindows()
+
