@@ -3,6 +3,7 @@ from tensorflow.keras.preprocessing.image import img_to_array
 import numpy as np
 from tensorflow.keras.models import load_model
 
+
 def detect_face(img):
     coord = haar.detectMultiScale(img)
     
